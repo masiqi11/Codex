@@ -13,39 +13,21 @@
 
 ### 1. 准备环境
 
-项目仅依赖 Python 3.10+ 标准库，无需额外第三方包。运行前请先在终端设置好 OpenAI API Key：
+项目仅依赖 Python 3.10+ 标准库，无需额外第三方包。
+
+### 2. 交互式应用
+
+运行下面的命令即可启动一个交互式控制台 App，直接在程序里输入 OpenAI API Key、选择模型并填写备忘录：
 
 ```bash
-export OPENAI_API_KEY="在这里填写你的 key"
+python -m ai_memo
 ```
 
-你也可以在代码里显式传入 `api_key` 参数。
+应用会依次询问：
 
-### 2. 命令行解析
-
-```bash
-python -m ai_memo \
-  --api-key "$OPENAI_API_KEY" \
-  "明天 10 点和王经理电话沟通下季度排期"
-```
-
-示例输出：
-
-```
-Memo: 明天 10 点和王经理电话沟通下季度排期
-  Category   : schedule
-  Confidence : 0.82
-  Summary    : 明天上午 10 点与王经理电话讨论下季度排期。
-  Action Items:
-    - 提前整理会议议题
-    - 在日历中添加电话提醒
-```
-
-通过 `--json` 可以直接得到适合 iOS 端消费的 JSON：
-
-```bash
-python -m ai_memo "下午给客户回电确认签约" --json
-```
+1. **OpenAI API Key**：直接在提示中粘贴即可，无需提前设置环境变量。
+2. **模型选择**：按回车使用默认的 `gpt-4o-mini`，也可以输入其他模型名。
+3. **备忘录内容**：逐条输入自然语言备忘录，输出会给出类别、摘要、置信度及后续行动。输入 `:config` 可随时重新设置 API Key 和模型，直接回车退出程序。
 
 ### 3. Python API
 
